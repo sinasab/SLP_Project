@@ -35,7 +35,7 @@ def getSplitupLyricData():
     train = allData[:train_cutoff]
     validation = allData[train_cutoff:val_cutoff]
     test = allData[val_cutoff:]
-    return (train, validation, test)
+    return { "train": train, "validation": validation, "test": test }
 
 def getAllLyricData():
     # return all of the data
