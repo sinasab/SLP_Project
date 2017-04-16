@@ -14,6 +14,24 @@ The dictionaries look like this:
 import glob
 import csv
 
+def getSplitupLyricData():
+    # Return a tuple of (train, validation, test) data lists
+
+    # These should add up to 1
+    TRAIN_PERCENTAGE = 0.7
+    VALIDATION_PERCENTAGE = 0.15
+    TEST_PERCENTAGE = 0.15
+
+    allData = getAllLyricData()
+    total_len = len(allData)
+    train_cutoff = int(TRAIN_PERCENTAGE * total_len)
+    val_cutoff = int(VALIDATION_PERCENTAGE * total_len) + train_cutoff
+
+    train = allData[:train_cutoff]
+    validation = allData[train_cutoff:val_cutoff]
+    test = allData[val_cutoff:]
+    return (train, validation, test)
+
 def getAllLyricData():
     # return all of the data
     lyricsData = []
