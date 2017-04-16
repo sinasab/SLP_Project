@@ -13,6 +13,7 @@ The dictionaries look like this:
 """
 import glob
 import csv
+import random
 
 def getSplitupLyricData():
     # Return a tuple of (train, validation, test) data lists
@@ -23,6 +24,10 @@ def getSplitupLyricData():
     TEST_PERCENTAGE = 0.15
 
     allData = getAllLyricData()
+    # shuffle it, seeding the rng for consistency while developing
+    random.seed(0)
+    random.shuffle(allData)
+    # find indices of where to slice allData
     total_len = len(allData)
     train_cutoff = int(TRAIN_PERCENTAGE * total_len)
     val_cutoff = int(VALIDATION_PERCENTAGE * total_len) + train_cutoff
