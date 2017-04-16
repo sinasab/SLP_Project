@@ -56,3 +56,6 @@ def getFewLyricData():
             for row in csv.DictReader(f, fieldnames=fieldnames):
                 lyricsData.append(row)
     return lyricsData
+
+def getLyricsFromData(data):
+    return [song['lyrics'] for song in data]
