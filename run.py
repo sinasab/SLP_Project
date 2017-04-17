@@ -8,6 +8,6 @@ if __name__ == '__main__':
     data = getSplitLyricData(percent=0.3)
     # data = reducedData()
     # represent the labels and features appropriately
-    labels_res = getLabels(data, 'genre') # {le, train, test, validation}
-    features_res = getFeaturesBoW(data) # {cv, train, test, validation}
-    # perceptron_res = trainAndEvaluatePerceptron(res, labels)
+    labels = getLabels(data, 'genre') # {le, train, test, validation}
+    features = getFeaturesBoW(data) # {cv, train, test, validation}
+    # perceptron_res = trainAndEvaluatePerceptron(features, labels)
