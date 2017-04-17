@@ -1,6 +1,7 @@
 from lyric_data import getSplitupLyricData, reducedData
 from lyric_features import setFeaturesBoW
 from lyric_labels import getLabels
+from perceptron import trainAndEvaluatePerceptron
 
 if __name__ == '__main__':
     # Switch between reduced and full data set depending on your system
@@ -16,6 +17,8 @@ if __name__ == '__main__':
     train_counts = res["train"]
     validate_counts = res["validation"]
     test_counts = res["test"]
+
+    trainAndEvaluatePerceptron(res, labels)
 
     print train_counts.shape
     print validate_counts.shape
