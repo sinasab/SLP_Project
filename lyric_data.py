@@ -15,14 +15,12 @@ import glob
 import csv
 import random
 
+TRAIN_PERCENTAGE = 0.7
+VALIDATION_PERCENTAGE = 0.15
+TEST_PERCENTAGE = 0.15
+
 def getSplitupLyricData():
-    # Return a tuple of (train, validation, test) data lists
-
-    # These should add up to 1
-    TRAIN_PERCENTAGE = 0.7
-    VALIDATION_PERCENTAGE = 0.15
-    TEST_PERCENTAGE = 0.15
-
+    ''' Return a tuple of (train, validation, test) data lists '''
     allData = [dp for dp in getAllLyricData() if dp["lyrics"] != '']
     # shuffle it, seeding the rng for consistency while developing
     random.seed(0)
@@ -56,3 +54,15 @@ def getFewLyricData():
             for row in csv.DictReader(f, fieldnames=fieldnames):
                 lyricsData.append(row)
     return lyricsData
+
+def reducedData():
+    data = [dp for dp in getFewLyricData() if dp["lyrics"]]
+    random.seed(0)
+    random.shuffle(data)
+    total_len = len(data)
+    train_cutoff = int(TRAIN_PERCENTAGE * total_len)
+    val_cutoff = int(VALIDATION_PERCENTAGE * total_len) + train_cutoff
+    train = data[:train_cutoff]
+    validation = data[train_cutoff:val_cutoff]
+    test = data[val_cutoff:]
+    return { "train": train, "validation": validation, "test": test }
