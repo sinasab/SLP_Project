@@ -35,3 +35,4 @@ def tokenizer(doc):
 
 def getLyricsFromData(data):
     return [song['lyrics'] for song in data]
+    
