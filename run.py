@@ -10,7 +10,7 @@ if __name__ == '__main__':
     train_lyrics = getLyricsFromData(train)
     valid_lyrics = getLyricsFromData(validate)
     test_lyrics = getLyricsFromData(test)
-    
+
     train_counts = count_vect.fit_transform(train_lyrics)
     validate_counts = count_vect.fit_transform(valid_lyrics)
     test_counts = count_vect.fit_transform(test_lyrics)
