@@ -12,8 +12,8 @@ if __name__ == '__main__':
     test_lyrics = getLyricsFromData(test)
 
     train_counts = count_vect.fit_transform(train_lyrics)
-    validate_counts = count_vect.fit_transform(valid_lyrics)
-    test_counts = count_vect.fit_transform(test_lyrics)
+    validate_counts = count_vect.transform(valid_lyrics)
+    test_counts = count_vect.transform(test_lyrics)
     print train_counts.shape
     print validate_counts.shape
     print test_counts.shape
