@@ -15,24 +15,25 @@ import glob
 import csv
 import random
 
-TRAIN_PERCENTAGE = 0.7
+TRAIN_PERCENTAGE = 0.8
 VALIDATION_PERCENTAGE = 0.15
-TEST_PERCENTAGE = 0.15
+TEST_PERCENTAGE = 0.1
 
 def getSplitLyricData(percent=0.3):
     ''' Return a tuple of (train, validation, test) data lists '''
     allData = [dp for dp in getAllLyricData() if dp["lyrics"] != '']
+    data = allData[:int(len(allData)* percent)]
     # shuffle it, seeding the rng for consistency while developing
     random.seed(0)
-    random.shuffle(allData)
-    # find indices of where to slice allData
-    total_len = int(len(allData) * percent)
+    random.shuffle(data)
+    # find indices of where to slice data
+    total_len = len(data)
     train_cutoff = int(TRAIN_PERCENTAGE * total_len)
     val_cutoff = int(VALIDATION_PERCENTAGE * total_len) + train_cutoff
     # create slices of the data
-    train = allData[:train_cutoff]
-    validation = allData[train_cutoff:val_cutoff]
-    test = allData[val_cutoff:total_len]
+    train = data[:train_cutoff]
+    validation = data[train_cutoff:val_cutoff]
+    test = data[val_cutoff:total_len]
     return { "train": train, "validation": validation, "test": test }
 
 def getAllLyricData():
