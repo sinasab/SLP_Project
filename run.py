@@ -1,25 +1,13 @@
-from lyric_data import getSplitupLyricData, reducedData
-from lyric_features import setFeaturesBoW
+from lyric_data import getSplitLyricData, reducedData
+from lyric_features import getFeaturesBoW
 from lyric_labels import getLabels
 from perceptron import trainAndEvaluatePerceptron
 
 if __name__ == '__main__':
-    # Switch between reduced and full data set depending on your system
-    #data = getSplitupLyricData()
-    data = reducedData()
-
-    # gets desired labels for artist classification while also modifying
-    # data to get rid of unseen artists in test and validation sets
-    labels = getLabels(data, 'artist')
-    
-    res = setFeaturesBoW(data) # {cv, train, test, validation}
-    cv = res["cv"] # the CountVectorizer
-    train_counts = res["train"]
-    validate_counts = res["validation"]
-    test_counts = res["test"]
-
-    trainAndEvaluatePerceptron(res, labels)
-
-    print train_counts.shape
-    print validate_counts.shape
-    print test_counts.shape
+    # Switch percentage of dataset to use depending on your system
+    data = getSplitLyricData(percent=0.3)
+    # data = reducedData()
+    # represent the labels and features appropriately
+    labels_res = getLabels(data, 'genre') # {le, train, test, validation}
+    features_res = getFeaturesBoW(data) # {cv, train, test, validation}
+    # perceptron_res = trainAndEvaluatePerceptron(res, labels)

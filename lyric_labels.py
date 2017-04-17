@@ -1,3 +1,6 @@
+"""
+gets desired labels for artist classification while also modifying data to get rid of unseen artists in test and validation sets
+"""
 from sklearn.preprocessing.label import LabelEncoder
 
 def getLabels(splitData, key):
@@ -22,6 +25,7 @@ def getLabels(splitData, key):
         splitData["validation"][i]["labels"] = validation_labels[i]
 
     return {
+        "le": le,
         "train": training_labels,
         "test": testing_labels,
         "validation": validation_labels

@@ -1,7 +1,7 @@
 import re
 from sklearn.feature_extraction.text import CountVectorizer
 
-def setFeaturesBoW(splitData):
+def getFeaturesBoW(splitData):
     # bag of words featurizer
 
     cv = CountVectorizer(strip_accents="ascii", tokenizer=tokenizer)
