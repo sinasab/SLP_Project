@@ -19,6 +19,7 @@ def setFeaturesBoW(splitData):
     validation_features = cv.fit_transform(validation_lyrics)
     for i in range(len(splitData["validation"])):
         splitData["validation"][i]["features"] = validation_features[i]
+    splitData["cv"] = cv
     return {
         "cv": cv,
         "train": train_features,
