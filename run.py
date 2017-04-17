@@ -1,19 +1,14 @@
-from lyric_data import *
-from sklearn.feature_extraction.text import CountVectorizer
+from lyric_data import getSplitupLyricData
+from lyric_features import setFeaturesBoW
 
 if __name__ == '__main__':
-    count_vect = CountVectorizer()
     data = getSplitupLyricData()
-    train = data['train']
-    validate = data['validation']
-    test = data['test']
-    train_lyrics = getLyricsFromData(train)
-    valid_lyrics = getLyricsFromData(validate)
-    test_lyrics = getLyricsFromData(test)
+    res = setFeaturesBoW(data) # {cv, train, test, validation}
+    cv = res["cv"] # the CountVectorizer
+    train_counts = res["train"]
+    validate_counts = res["validation"]
+    test_counts = res["test"]
 
-    train_counts = count_vect.fit_transform(train_lyrics)
-    validate_counts = count_vect.transform(valid_lyrics)
-    test_counts = count_vect.transform(test_lyrics)
     print train_counts.shape
     print validate_counts.shape
     print test_counts.shape
