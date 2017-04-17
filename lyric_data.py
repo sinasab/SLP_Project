@@ -23,7 +23,7 @@ def getSplitupLyricData():
     VALIDATION_PERCENTAGE = 0.15
     TEST_PERCENTAGE = 0.15
 
-    allData = getAllLyricData()
+    allData = [dp for dp in getAllLyricData() if dp["lyrics"] != '']
     # shuffle it, seeding the rng for consistency while developing
     random.seed(0)
     random.shuffle(allData)
