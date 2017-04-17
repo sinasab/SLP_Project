@@ -12,11 +12,11 @@ def setFeaturesBoW(splitData):
         splitData["train"][i]["features"] = train_features[i]
     # transform test and validation data groups
     test_lyrics = getLyricsFromData(splitData["test"])
-    test_features = cv.fit_transform(test_lyrics)
+    test_features = cv.transform(test_lyrics)
     for i in range(len(splitData["test"])):
         splitData["test"][i]["features"] = test_features[i]
     validation_lyrics = getLyricsFromData(splitData["validation"])
-    validation_features = cv.fit_transform(validation_lyrics)
+    validation_features = cv.transform(validation_lyrics)
     for i in range(len(splitData["validation"])):
         splitData["validation"][i]["features"] = validation_features[i]
     splitData["cv"] = cv
