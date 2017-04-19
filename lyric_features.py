@@ -1,27 +1,29 @@
 import re
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 def getFeaturesBoW(splitData):
     # bag of words featurizer
 
-    cv = CountVectorizer(strip_accents="ascii", tokenizer=tokenizer, ngram_range=(2, 2))
+    vectorizer = TfidfVectorizer(strip_accents="ascii", tokenizer=tokenizer, ngram_range=(2, 2))
+    #vectorizer = CountVectorizer(strip_accents="ascii", tokenizer=tokenizer, ngram_range=(2, 2))
     # fit and transform the train data lyrics
     train_lyrics = getLyricsFromData(splitData["train"])
-    train_features = cv.fit_transform(train_lyrics)
+    train_features = vectorizer.fit_transform(train_lyrics)
     for i in range(len(splitData["train"])):
         splitData["train"][i]["features"] = train_features[i]
     # transform test and validation data groups
     test_lyrics = getLyricsFromData(splitData["test"])
-    test_features = cv.transform(test_lyrics)
+    test_features = vectorizer.transform(test_lyrics)
     for i in range(len(splitData["test"])):
         splitData["test"][i]["features"] = test_features[i]
     validation_lyrics = getLyricsFromData(splitData["validation"])
-    validation_features = cv.transform(validation_lyrics)
+    validation_features = vectorizer.transform(validation_lyrics)
     for i in range(len(splitData["validation"])):
         splitData["validation"][i]["features"] = validation_features[i]
-    splitData["cv"] = cv
+    splitData["cv"] = vectorizer
     return {
-        "cv": cv,
+        "cv": vectorizer,
         "train": train_features,
         "test": test_features,
         "validation": validation_features
