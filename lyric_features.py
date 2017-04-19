@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 def getFeaturesBoW(splitData):
     # bag of words featurizer
 
-    cv = CountVectorizer(strip_accents="ascii", tokenizer=tokenizer)
+    cv = CountVectorizer(strip_accents="ascii", tokenizer=tokenizer, ngram_range=(2, 2))
     # fit and transform the train data lyrics
     train_lyrics = getLyricsFromData(splitData["train"])
     train_features = cv.fit_transform(train_lyrics)
@@ -35,4 +35,3 @@ def tokenizer(doc):
 
 def getLyricsFromData(data):
     return [song['lyrics'] for song in data]
-    
