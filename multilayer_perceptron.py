@@ -3,9 +3,9 @@ Runs a multilayer perceptron on the lyric data
 """
 from sklearn.neural_network import MLPClassifier
 
-def multilayer_perceptron(x, y):
+def trainAndEvaluateMLP(x, y):
     mlp = MLPClassifier(
-        hidden_layer_sizes=(5,3,2),
+        # hidden_layer_sizes=(5,3,2),
         random_state=0,
         shuffle=True,
         verbose=True

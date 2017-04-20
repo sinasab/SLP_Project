@@ -2,6 +2,7 @@ from lyric_data import getSplitLyricData, reducedData
 from lyric_features import getFeaturesBoW, getLyricsFromData
 from lyric_labels import getLabels
 from perceptron import trainAndEvaluatePerceptron
+from multilayer_perceptron import trainAndEvaluateMLP
 from naive_bayes import naive_bayes
 from svm import run_svm
 #from neural_net import run_nn
@@ -17,4 +18,5 @@ if __name__ == '__main__':
     run_svm(features["train"], features["test"], labels)
     naive_bayes(features["train"], features["test"], labels)
     perceptron_res = trainAndEvaluatePerceptron(features, labels)
+    # mlp_res = trainAndEvaluateMLP(features, labels)
     # run_nn(features["train"],features["test"],labels)
