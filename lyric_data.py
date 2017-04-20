@@ -15,7 +15,7 @@ import glob
 import csv
 import random
 
-TRAIN_PERCENTAGE = 0.8
+TRAIN_PERCENTAGE = 0.75
 VALIDATION_PERCENTAGE = 0.15
 TEST_PERCENTAGE = 0.1
 
