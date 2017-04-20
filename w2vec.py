@@ -1,7 +1,7 @@
 import re
 import gensim
 import numpy as np
-from lyric_labels import tokenizer, getLyricsFromData
+from lyric_features import tokenizer, getLyricsFromData
 
 # you have to download this and put it in data folder:
 # https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit
@@ -32,12 +32,3 @@ def getW2vec(splitData):
         "test": features["test"],
         "validation": features["validation"]
     }
-
-def tokenizer(doc):
-    delims = "[ \n\[\]:]" # regex of our delimiters; \n, sp, and some puncts.
-    return [token for token in re.split(delims, doc)
-        if token is not ''
-    ]
-
-def getLyricsFromData(data):
-    return [song['lyrics'] for song in data]

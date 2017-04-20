@@ -2,6 +2,13 @@ from sklearn.linear_model import Perceptron
 import numpy as np
 
 def trainAndEvaluatePerceptron(data, labels):
-    p = Perceptron(n_iter=50)
+    p = Perceptron(
+        n_iter=200,
+        #verbose=True,
+        n_jobs=-1,
+        shuffle=True,
+        random_state=0
+    )
     p.fit(data["train"], labels["train"])
     print p.score(data["test"], labels["test"])
+    return p

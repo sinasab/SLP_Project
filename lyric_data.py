@@ -44,7 +44,22 @@ def getAllLyricData():
             fieldnames = ["index", "song", "year", "artist", "genre", "lyrics"]
             for row in csv.DictReader(f, fieldnames=fieldnames):
                 lyricsData.append(row)
+    lyricsData = groupAllYears(lyricsData)
     return lyricsData
+
+def groupAllYears(data):
+    def groupYear(year):
+        if len(year) == 4:
+            if year[0:2] == "19":
+                return year[0:3] + "0's"
+            elif year[0:3] == "200":
+                return "2000's"
+            elif year[0:3] == "201":
+                return "2010's"
+        return "Other"
+    for d in data:
+        d["year"] = groupYear(d["year"])
+    return data
 
 def getFewLyricData():
     # return a subset of the data
