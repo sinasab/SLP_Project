@@ -18,7 +18,7 @@ if __name__ == '__main__':
     # features = getBoW2(data)
     # features = getW2vec(data)
 
-    # ptron = perceptron(features, labels)
+    ptron = perceptron(features, labels)
     # svm = run_svm(features, labels)
     # nb = naive_bayes(features, labels)
     # mlp = mlperceptron(features, labels)

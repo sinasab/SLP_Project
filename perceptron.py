@@ -5,7 +5,6 @@ def perceptron(data, labels):
     p = Perceptron(
         n_iter=200,
         #verbose=True,
-        n_jobs=-1,
         shuffle=True,
         random_state=0
     )
