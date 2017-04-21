@@ -1,7 +1,7 @@
 from sklearn.linear_model import Perceptron
 import numpy as np
 
-def trainAndEvaluatePerceptron(data, labels):
+def perceptron(data, labels):
     p = Perceptron(
         n_iter=200,
         #verbose=True,
